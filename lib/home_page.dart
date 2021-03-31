@@ -1,15 +1,25 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
-import 'package:newsapi_v1/Categories/Entertainment.dart';
-import 'package:newsapi_v1/Categories/General.dart';
-import 'package:newsapi_v1/Categories/Health.dart';
-import 'package:newsapi_v1/Categories/Sports.dart';
-import 'package:newsapi_v1/Categories/Technology.dart';
+//import 'package:newsapi_v1/Categories/Entertainment.dart';
+//import 'package:newsapi_v1/Categories/EntertainmentParse.dart';
+//import 'package:newsapi_v1/Categories/General.dart';
+//import 'package:newsapi_v1/Categories/GeneralParse.dart';
+// import 'package:newsapi_v1/Categories/Health.dart';
+//import 'package:newsapi_v1/Categories/HealthParse.dart';
+//import 'package:newsapi_v1/Categories/Sports.dart';
+// import 'package:newsapi_v1/Categories/Technology.dart';
 import 'package:newsapi_v1/services/authservice.dart';
 import 'package:http/http.dart' as http;
-import 'Categories/Science.dart';
-import 'Categories/business.dart';
+import 'Categories/EntertainmentParse.dart';
+import 'Categories/GeneralParse.dart';
+import 'Categories/HealthParse.dart';
+//mport 'Categories/Science.dart';
+//import 'Categories/business.dart';
+import 'Categories/ScienceParse.dart';
+import 'Categories/SportsParse.dart';
+import 'Categories/TechnologyParse.dart';
+import 'Categories/businessParse.dart';
 
 void main() {
   runApp(
@@ -94,7 +104,7 @@ class _HomePageState extends State<HomePage> {
                     )),
                 onTap: () {
                   Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => Business()));
+                      MaterialPageRoute(builder: (context) => BusinessParse()));
                 },
               ),
               ListTile(
@@ -105,8 +115,10 @@ class _HomePageState extends State<HomePage> {
                       fontFamily: 'Truneo',
                     )),
                 onTap: () {
-                  Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => Entertainment()));
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => EntertainmentParse()));
                 },
               ),
               ListTile(
@@ -118,7 +130,7 @@ class _HomePageState extends State<HomePage> {
                     )),
                 onTap: () {
                   Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => Health()));
+                      MaterialPageRoute(builder: (context) => HealthParse()));
                 },
               ),
               ListTile(
@@ -130,7 +142,7 @@ class _HomePageState extends State<HomePage> {
                     )),
                 onTap: () {
                   Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => General()));
+                      MaterialPageRoute(builder: (context) => GeneralParse()));
                 },
               ),
               ListTile(
@@ -142,7 +154,7 @@ class _HomePageState extends State<HomePage> {
                     )),
                 onTap: () {
                   Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => Sports()));
+                      MaterialPageRoute(builder: (context) => SportsParse()));
                 },
               ),
               ListTile(
@@ -153,8 +165,10 @@ class _HomePageState extends State<HomePage> {
                       fontFamily: 'Truneo',
                     )),
                 onTap: () {
-                  Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => Technology()));
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => TechnologyParse()));
                 },
               ),
               ListTile(
@@ -166,7 +180,7 @@ class _HomePageState extends State<HomePage> {
                     )),
                 onTap: () {
                   Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => Science()));
+                      MaterialPageRoute(builder: (context) => ScienceParse()));
                 },
               ),
               ListTile(
