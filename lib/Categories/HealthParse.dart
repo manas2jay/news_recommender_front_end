@@ -28,7 +28,7 @@ class _HealthParseState extends State<HealthParse> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(_loading ? "loading..." : "Json Health parse"),
+        title: Text(_loading ? "loading..." : "Health News"),
       ),
       body: Container(
         color: Colors.white,

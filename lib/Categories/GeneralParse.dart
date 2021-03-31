@@ -28,7 +28,7 @@ class _GeneralParseState extends State<GeneralParse> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(_loading ? "loading..." : "Json General parse"),
+        title: Text(_loading ? "loading..." : " General News"),
       ),
       body: Container(
         color: Colors.white,

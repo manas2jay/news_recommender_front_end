@@ -29,7 +29,7 @@ class _EntertainmentParseState extends State<EntertainmentParse> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(_loading ? "loading..." : "Json Entertainmenent parse"),
+        title: Text(_loading ? "loading..." : "Entertainmenent News"),
       ),
       body: Container(
         color: Colors.white,

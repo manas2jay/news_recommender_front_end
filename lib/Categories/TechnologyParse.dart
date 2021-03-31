@@ -30,7 +30,7 @@ class _TechnologyParseState extends State<TechnologyParse> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(_loading ? "loading..." : "Json Technology parse"),
+        title: Text(_loading ? "loading..." : " Technology News"),
       ),
       body: Container(
         color: Colors.white,

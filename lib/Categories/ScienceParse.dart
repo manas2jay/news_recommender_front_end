@@ -28,7 +28,7 @@ class _ScienceParseState extends State<ScienceParse> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(_loading ? "loading..." : "Json Science parse"),
+        title: Text(_loading ? "loading..." : "Science News"),
       ),
       body: Container(
         color: Colors.white,

@@ -29,7 +29,7 @@ class _SportsParseState extends State<SportsParse> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(_loading ? "loading..." : "Json Sports parse"),
+        title: Text(_loading ? "loading..." : " Sports News"),
       ),
       body: Container(
         color: Colors.white,
