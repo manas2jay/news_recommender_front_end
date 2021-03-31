@@ -70,7 +70,7 @@ import "package:http/http.dart" as http;
 import 'SportsClass.dart';
 
 class Services {
-  static const String url = 'http://192.168.29.226:8000/news/listhealth';
+  static const String url = 'http://192.168.29.226:8000/news/listsports';
   static Future<List<SportsClass>> getUsers() async {
     try {
       final response = await http.get(Uri.parse(url));
