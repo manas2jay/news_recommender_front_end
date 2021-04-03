@@ -1,5 +1,8 @@
 //import 'dart:convert';
-
+//import 'package:firebase_auth/firebase_auth.dart';
+//import 'package:firebase_core/firebase_core.dart';
+//import 'package:newsapi_v1/post_model.dart';
+import 'package:url_launcher/url_launcher.dart';
 import 'package:flutter/material.dart';
 //import 'package:newsapi_v1/Categories/Entertainment.dart';
 //import 'package:newsapi_v1/Categories/EntertainmentParse.dart';
@@ -16,6 +19,7 @@ import 'Categories/GeneralParse.dart';
 import 'Categories/HealthParse.dart';
 //mport 'Categories/Science.dart';
 //import 'Categories/business.dart';
+import 'Categories/RecomendParse.dart';
 import 'Categories/ScienceParse.dart';
 import 'Categories/SportsParse.dart';
 import 'Categories/TechnologyParse.dart';
@@ -23,6 +27,7 @@ import 'Categories/businessParse.dart';
 import 'Topheadline.dart';
 import 'TopheadlineClass.dart';
 
+//import 'post_model.dart';
 void main() {
   runApp(
     MaterialApp(
@@ -179,6 +184,18 @@ class _HomePageState extends State<HomePage> {
               },
             ),
             ListTile(
+              leading: Icon(Icons.recommend),
+              title: Text("Recommend",
+                  style: TextStyle(
+                    color: Colors.black,
+                    fontFamily: 'Truneo',
+                  )),
+              onTap: () {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => RecomendParse()));
+              },
+            ),
+            ListTile(
               leading: Icon(Icons.logout),
               title: Text("LogOut",
                   style: TextStyle(
@@ -198,11 +215,30 @@ class _HomePageState extends State<HomePage> {
           itemCount: null == _users ? 0 : _users.length,
           itemBuilder: (context, index) {
             TopheadlineClass user = _users[index];
+            // const _url = 'https://flutter.dev';
+            // _launchURL() async {
+            //   if (!_url.contains('http')) if (await canLaunch(_url)) {
+            //     await launch(_url);
+            //   } else {
+            //     throw 'Could not launch $_url';
+            //   }
+            // }
+
             return ListTile(
-              title: Text(user.title),
-              subtitle: Text(user.description),
-              leading: Image.network(user.urlToImage),
-            );
+                title: Text(user.title),
+                subtitle: Text(user.description),
+                leading: Image.network(user.urlToImage),
+                isThreeLine: true,
+                // onTap: () {},
+                onTap: () async {
+                  String _url = user.url;
+                  if (await canLaunch(_url)) {
+                    await launch(_url,
+                        forceSafariVC: false, forceWebView: true);
+                  } else {
+                    throw 'Could not launch $_url';
+                  }
+                });
           },
         ),
       ),
