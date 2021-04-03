@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:newsapi_v1/Categories/business.dart';
+import 'package:url_launcher/url_launcher.dart';
 import 'BusinessClass.dart';
 
 class BusinessParse extends StatefulWidget {
@@ -28,7 +29,7 @@ class _BusinessParseState extends State<BusinessParse> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(_loading ? "loading..." : "Json business parse"),
+        title: Text(_loading ? "loading..." : "business News"),
       ),
       body: Container(
         color: Colors.white,
@@ -37,10 +38,18 @@ class _BusinessParseState extends State<BusinessParse> {
           itemBuilder: (context, index) {
             BusinessClass user = _users[index];
             return ListTile(
-              title: Text(user.title),
-              subtitle: Text(user.description),
-              leading: Image.network(user.urlToImage),
-            );
+                title: Text(user.title),
+                subtitle: Text(user.description),
+                leading: Image.network(user.urlToImage),
+                onTap: () async {
+                  String _url = user.url;
+                  if (await canLaunch(_url)) {
+                    await launch(_url,
+                        forceSafariVC: false, forceWebView: true);
+                  } else {
+                    throw 'Could not launch $_url';
+                  }
+                });
           },
         ),
       ),

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:newsapi_v1/Categories/General.dart';
+import 'package:url_launcher/url_launcher.dart';
 import 'GeneralClass.dart';
 
 class GeneralParse extends StatefulWidget {
@@ -37,10 +38,18 @@ class _GeneralParseState extends State<GeneralParse> {
           itemBuilder: (context, index) {
             GeneralClass user = _users[index];
             return ListTile(
-              title: Text(user.title),
-              subtitle: Text(user.description),
-              leading: Image.network(user.urlToImage),
-            );
+                title: Text(user.title),
+                subtitle: Text(user.description),
+                leading: Image.network(user.urlToImage),
+                onTap: () async {
+                  String _url = user.url;
+                  if (await canLaunch(_url)) {
+                    await launch(_url,
+                        forceSafariVC: false, forceWebView: true);
+                  } else {
+                    throw 'Could not launch $_url';
+                  }
+                });
           },
         ),
       ),
