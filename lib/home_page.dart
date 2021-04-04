@@ -2,6 +2,7 @@
 //import 'package:firebase_auth/firebase_auth.dart';
 //import 'package:firebase_core/firebase_core.dart';
 //import 'package:newsapi_v1/post_model.dart';
+import 'package:newsapi_v1/post_model.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:flutter/material.dart';
 //import 'package:newsapi_v1/Categories/Entertainment.dart';
@@ -223,14 +224,17 @@ class _HomePageState extends State<HomePage> {
             //     throw 'Could not launch $_url';
             //   }
             // }
-
             return ListTile(
                 title: Text(user.title),
                 subtitle: Text(user.description),
                 leading: Image.network(user.urlToImage),
                 isThreeLine: true,
+
                 // onTap: () {},
                 onTap: () async {
+                  var userid = 'getcurrent';
+                  var desc = user.description;
+                  createdetail(userid, desc);
                   String _url = user.url;
                   if (await canLaunch(_url)) {
                     await launch(_url,
