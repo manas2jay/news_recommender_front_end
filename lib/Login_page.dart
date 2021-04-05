@@ -22,7 +22,7 @@ class _LoginPageState extends State<LoginPage> {
     return false;
   }
 
-   String validateEmail(String value) {
+  String validateEmail(String value) {
     Pattern pattern =
         r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$';
     RegExp regex = new RegExp(pattern);
@@ -45,11 +45,9 @@ class _LoginPageState extends State<LoginPage> {
     ));
   }
 
-
   _buildLoginForm() {
     Color greenColor = Color(0xFF00AF19);
     Color orangeColor = Color(0xFFFF5722);
-    
 
     return Padding(
         padding: const EdgeInsets.only(left: 25.0, right: 25.0),
@@ -105,7 +103,6 @@ class _LoginPageState extends State<LoginPage> {
                 },
                 validator: (value) =>
                     value.isEmpty ? 'Email is required' : validateEmail(value)),
-                    
             TextFormField(
                 decoration: InputDecoration(
                   labelText: 'PASSWORD',
@@ -123,7 +120,6 @@ class _LoginPageState extends State<LoginPage> {
                 },
                 validator: (value) =>
                     value.isEmpty ? 'Password is required' : null),
-                    
             SizedBox(height: 5.0),
             GestureDetector(
                 onTap: () {},
@@ -143,7 +139,8 @@ class _LoginPageState extends State<LoginPage> {
             SizedBox(height: 50.0),
             GestureDetector(
               onTap: () async {
-                if (checkFields()) AuthService().signIn(email, password, context);
+                if (checkFields())
+                  AuthService().signIn(email, password, context);
               },
               child: Container(
                 height: 50.0,
@@ -162,37 +159,6 @@ class _LoginPageState extends State<LoginPage> {
                 ),
               ),
             ),
-            SizedBox(height: 20.0),
-            GestureDetector(
-                onTap: () {},
-                child: Container(
-                  height: 50.0,
-                  color: Colors.transparent,
-                  child: Container(
-                    decoration: BoxDecoration(
-                        border: Border.all(
-                            color: Colors.black,
-                            style: BorderStyle.solid,
-                            width: 1.0),
-                        color: Colors.transparent,
-                        borderRadius: BorderRadius.circular(25.0)),
-                    child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Center(
-                            child: ImageIcon(AssetImage('assets/facebook.png'),
-                                size: 15),
-                          ),
-                          SizedBox(width: 10.0),
-                          Center(
-                            child: Text(
-                              'Login with Facebook',
-                              style: TextStyle(fontFamily: 'Truneo'),
-                            ),
-                          ),
-                        ]),
-                  ),
-                )),
             SizedBox(height: 25),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,

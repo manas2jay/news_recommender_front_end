@@ -2,6 +2,8 @@
 //import 'package:firebase_auth/firebase_auth.dart';
 //import 'package:firebase_core/firebase_core.dart';
 //import 'package:newsapi_v1/post_model.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/rendering.dart';
 import 'package:newsapi_v1/post_model.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:flutter/material.dart';
@@ -21,6 +23,7 @@ import 'Categories/HealthParse.dart';
 //mport 'Categories/Science.dart';
 //import 'Categories/business.dart';
 import 'Categories/RecomendParse.dart';
+import 'Categories/Recommend_post.dart';
 import 'Categories/ScienceParse.dart';
 import 'Categories/SportsParse.dart';
 import 'Categories/TechnologyParse.dart';
@@ -34,7 +37,7 @@ void main() {
     MaterialApp(
       home: HomePage(),
       theme: ThemeData(
-        primarySwatch: Colors.purple,
+        primarySwatch: Colors.black,
       ),
     ),
   );
@@ -61,43 +64,50 @@ class _HomePageState extends State<HomePage> {
     });
   }
 
+  FirebaseAuth auth = FirebaseAuth.instance;
+  getCurrentUser() {
+    final User user = auth.currentUser;
+    //final uid = user.uid;
+    // Similarly we can get email as well
+    final uname = user.email;
+
+    //print(uemail);
+    return uname;
+  }
+
   @override
   Widget build(BuildContext context) {
+    String name = getCurrentUser();
     return Scaffold(
       appBar: AppBar(
           title: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: <Widget>[
-          Text(
-            "24 Hours",
-            style: TextStyle(
-              color: Colors.white,
-              fontFamily: 'Truneo',
-            ),
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              Text(
+                "24 Hours",
+                style: TextStyle(
+                  color: Colors.white,
+                  fontFamily: 'Truneo',
+                ),
+              ),
+              Text(" News",
+                  style: TextStyle(
+                    color: Colors.green,
+                    fontFamily: 'Truneo',
+                  ))
+            ],
           ),
-          Text(" News",
-              style: TextStyle(
-                color: Colors.black,
-                fontFamily: 'Truneo',
-              ))
-        ],
-      )),
+          backgroundColor: Colors.black),
       drawer: Drawer(
         child: ListView(
           padding: const EdgeInsets.all(0),
           children: <Widget>[
             UserAccountsDrawerHeader(
-                accountName: Text("OMEN"),
-                accountEmail: Text("69SAXNINJA69"),
+                accountName: Text(name),
+                accountEmail: Text("Welcome to the News App."),
                 currentAccountPicture: CircleAvatar(
                     backgroundImage: NetworkImage(
                         "https://images.unsplash.com/photo-1613750147830-c770850838b0?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=675&q=80"))),
-            ListTile(
-              leading: Icon(Icons.person),
-              title: Text("SaxNinja"),
-              subtitle: Text("Developer"),
-              trailing: Icon(Icons.edit),
-            ),
             ListTile(
               leading: Icon(Icons.anchor_outlined),
               title: Text("Business",
@@ -225,16 +235,24 @@ class _HomePageState extends State<HomePage> {
             //   }
             // }
             return ListTile(
-                title: Text(user.title),
-                subtitle: Text(user.description),
+                tileColor: Colors.black,
+                contentPadding:
+                    EdgeInsets.symmetric(horizontal: 4.0, vertical: 15.0),
+                title: Text(user.title,
+                    style: TextStyle(
+                        fontFamily: 'Truneo',
+                        fontWeight: FontWeight.bold,
+                        color: Colors.white)),
+                subtitle: Text(''),
                 leading: Image.network(user.urlToImage),
                 isThreeLine: true,
 
                 // onTap: () {},
                 onTap: () async {
-                  var userid = 'getcurrent';
+                  var userid = name;
                   var desc = user.description;
                   createdetail(userid, desc);
+                  Services_rec.getUsers(name);
                   String _url = user.url;
                   if (await canLaunch(_url)) {
                     await launch(_url,

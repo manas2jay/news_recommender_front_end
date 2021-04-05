@@ -1,9 +1,12 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:http/http.dart';
+//import 'package:http/src/response.dart';
 import 'package:newsapi_v1/Login_page.dart';
 import 'package:newsapi_v1/error_handler.dart';
 
 import '../home_page.dart';
+import 'deleteRec.dart';
 
 class AuthService {
   //Determine if the user is authenticated.
@@ -19,6 +22,7 @@ class AuthService {
   }
 
   signOut() {
+    Future<Response> name = deleteRecommend();
     FirebaseAuth.instance.signOut();
   }
 

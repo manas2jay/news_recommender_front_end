@@ -7,7 +7,7 @@
           </intent>
         </queries>
    <application
-         android:usesCleartextTraffic="true"
+        android:usesCleartextTraffic="true"
         android:label="newsapi_v1"
         android:icon="@mipmap/ic_launcher">
         <activity
