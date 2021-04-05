@@ -22,6 +22,7 @@ class AuthService {
   }
 
   signOut() {
+    // ignore: unused_local_variable
     Future<Response> name = deleteRecommend();
     FirebaseAuth.instance.signOut();
   }
